@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".View.TabuleiroActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_novoJogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_novo_jogo" />
+
+        <Button
+            android:id="@+id/button_Sair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/button_sair" />
+
+    </RelativeLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView_br"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tag="ScrollView">
+
+        <LinearLayout
+            android:id="@+id/barra_rolagem_pecas"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_barra_rolagem"
+            android:orientation="horizontal"
+            android:tag="LinearLayout">
+
+            <ImageView
+                android:id="@+id/peca0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/contentDescription_default"
+                android:padding="8dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:tag="0" />
+
+            <ImageView
+                android:id="@+id/peca1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/contentDescription_default"
+                android:padding="8dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:tag="1" />
+
+            <ImageView
+                android:id="@+id/peca2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/contentDescription_default"
+                android:padding="8dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:tag="2" />
+
+            <ImageView
+                android:id="@+id/peca3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/contentDescription_default"
+                android:padding="8dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:tag="3" />
+
+            <ImageView
+                android:id="@+id/peca4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/contentDescription_default"
+                android:padding="8dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:tag="4" />
+
+            <ImageView
+                android:id="@+id/peca5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/contentDescription_default"
+                android:padding="8dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:tag="5" />
+
+            <ImageView
+                android:id="@+id/peca6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/contentDescription_default"
+                android:padding="8dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:tag="6" />
+
+            <ImageView
+                android:id="@+id/peca7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/contentDescription_default"
+                android:padding="8dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:tag="7" />
+
+            <ImageView
+                android:id="@+id/peca8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/contentDescription_default"
+                android:padding="8dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:tag="8" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/recipiente0"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_quebra_cabeca"
+                android:orientation="vertical"
+                android:tag="0">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/recipiente1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_quebra_cabeca"
+                android:orientation="vertical"
+                android:tag="1" />
+
+            <LinearLayout
+                android:id="@+id/recipiente2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_quebra_cabeca"
+                android:orientation="vertical"
+                android:tag="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/recipiente3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_quebra_cabeca"
+                android:orientation="vertical"
+                android:tag="3" />
+
+            <LinearLayout
+                android:id="@+id/recipiente4"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_quebra_cabeca"
+                android:orientation="vertical"
+                android:tag="3" />
+
+            <LinearLayout
+                android:id="@+id/recipiente5"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_quebra_cabeca"
+                android:orientation="vertical"
+                android:tag="5" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/recipiente6"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_quebra_cabeca"
+                android:orientation="vertical"
+                android:tag="6" />
+
+            <LinearLayout
+                android:id="@+id/recipiente7"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_quebra_cabeca"
+                android:orientation="vertical"
+                android:tag="7" />
+
+            <LinearLayout
+                android:id="@+id/recipiente8"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_quebra_cabeca"
+                android:orientation="vertical"
+                android:tag="8" />
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/view_resultado"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/imageView_Resultado"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/contentDescription_default"
+            android:src="@drawable/ic_launcher_background" />
+    </LinearLayout>
+
+</LinearLayout>
