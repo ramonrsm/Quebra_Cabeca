@@ -4,38 +4,31 @@ import android.content.ClipData;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.DragEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.R;
 
 public class TabuleiroActivity extends AppCompatActivity implements View.OnLongClickListener, View.OnDragListener {
 
-    private Button      button_novoJogo;
-    private Button      button_Sair;
+    //private Button      button_novoJogo;
+    //private Button      button_Sair;
 
     private Drawable    enterShape;
     private Drawable    normalShape;
-
-    private LinearLayout barra_rolagem_pecas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabuleiro);
 
-        button_novoJogo = findViewById(R.id.button_novoJogo);
-        button_Sair     = findViewById(R.id.button_Sair);
+        //button_novoJogo = findViewById(R.id.button_novoJogo);
+        //button_Sair     = findViewById(R.id.button_Sair);
 
         enterShape      = getResources().getDrawable(R.drawable.bg_quebra_cabeca_over);
         normalShape     = getResources().getDrawable(R.drawable.bg_quebra_cabeca);
-
-        barra_rolagem_pecas = findViewById(R.id.barra_rolagem_pecas);
 
         findViewById(R.id.peca0).setOnLongClickListener(this);
         findViewById(R.id.peca1).setOnLongClickListener(this);
@@ -85,7 +78,6 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
                 break;
             default:break;
         }
-
         return true;
     }
 
