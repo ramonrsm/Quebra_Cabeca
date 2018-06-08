@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
+    android:tag="LinearLayout"
     tools:context=".View.TabuleiroActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:tag="RelativeLayout">
 
         <Button
             android:id="@+id/button_novoJogo"
