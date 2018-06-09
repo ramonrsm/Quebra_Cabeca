@@ -44,8 +44,6 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
         findViewById(R.id.peca7).setOnLongClickListener(this);
         findViewById(R.id.peca8).setOnLongClickListener(this);
 
-        //findViewById(R.id.barra_rolagem_pecas).setOnDragListener(this);
-
         findViewById(R.id.recipiente0).setOnDragListener(this);
         findViewById(R.id.recipiente1).setOnDragListener(this);
         findViewById(R.id.recipiente2).setOnDragListener(this);
@@ -80,20 +78,17 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
     @Override
     public boolean onDrag(View v, DragEvent event) {
 
-        boolean dragEvent = false;
-
         switch (event.getAction()){
             case DragEvent.ACTION_DRAG_ENTERED:
 
-                v.setBackground(enterShape);
+                LinearLayout containerPeca = (LinearLayout) v;
 
-                ViewGroup viewG = (ViewGroup) v.getParent();
-
-                if(viewG != null){
-
-                    Log.i("VIEW", "Não tem parentes "+viewG.getTag());
-                }else{
-                    Log.i("VIEW", "Tem parentes "+v.getTag());
+                if (containerPeca.getChildCount() != 0) {
+                    v.setBackground(unavailableShape);
+                    Log.i("VIEW", "Tem parentes");
+                } else {
+                    v.setBackground(enterShape);
+                    Log.i("VIEW", "Não tem parentes ");
                 }
                 break;
 
@@ -103,23 +98,34 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
 
             case DragEvent.ACTION_DROP:
 
-                View view = (View) event.getLocalState();
-
-                ViewGroup owner = (ViewGroup) view.getParent();
-                owner.removeView(view);
-
                 LinearLayout container = (LinearLayout) v;
-                container.addView(view);
-                view.setVisibility(View.VISIBLE);
-                break;
 
+                if (container.getChildCount() == 0) {
+
+                    View view = (View) event.getLocalState();
+
+                    ViewGroup owner = (ViewGroup) view.getParent();
+                    owner.removeView(view);
+
+                    container.addView(view);
+                    view.setVisibility(View.VISIBLE);
+                }
+                break;
             case DragEvent.ACTION_DRAG_ENDED:
-                v.setBackground(normalShape);
+
+                View view1 = (View) v.getParent();
+
                 View view2 = (View) event.getLocalState();
                 view2.setVisibility(View.VISIBLE);
-                break;
 
-            default:
+                Log.i("VIEW", "View1 Tag: " + view1.getTag());
+                Log.i("VIEW", "View2 Tag: " + view2.getTag());
+
+                if (view2.getTag().equals(view1.getTag())) {
+                    v.setBackground(enterShape);
+                } else {
+                    v.setBackground(normalShape);
+                }
                 break;
         }
         return true;
@@ -133,6 +139,7 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
         View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
         v.startDrag(dragData, shadowBuilder, v, 0);
         v.setVisibility(View.INVISIBLE);
+
         return true;
     }
 }

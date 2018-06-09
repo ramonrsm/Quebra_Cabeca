@@ -34,14 +34,14 @@
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView_br"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:tag="ScrollView">
 
         <LinearLayout
             android:id="@+id/barra_rolagem_pecas"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:background="@drawable/bg_barra_rolagem"
             android:orientation="horizontal"
             android:tag="LinearLayout">
@@ -53,7 +53,7 @@
                 android:contentDescription="@string/contentDescription_default"
                 android:padding="8dp"
                 android:src="@drawable/c1l1"
-                android:tag="0" />
+                android:tag="peca0" />
 
             <ImageView
                 android:id="@+id/peca1"
@@ -129,6 +129,13 @@
                 android:src="@drawable/c3l3"
                 android:tag="8" />
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="410dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/bg_barra_rolagem" />
+
         </LinearLayout>
 
     </HorizontalScrollView>
@@ -150,7 +157,7 @@
                 android:layout_height="100dp"
                 android:background="@drawable/bg_quebra_cabeca"
                 android:orientation="vertical"
-                android:tag="0">
+                android:tag="recipiente0">
 
             </LinearLayout>
 
@@ -243,9 +250,10 @@
         <ImageView
             android:id="@+id/imageView_Resultado"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:contentDescription="@string/contentDescription_default"
+            android:scaleType="centerCrop"
             android:src="@drawable/android_lollipop_bugdroid" />
     </LinearLayout>
 
