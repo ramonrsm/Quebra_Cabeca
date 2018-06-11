@@ -126,10 +126,8 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
 
                 if (containerPeca.getChildCount() != 0) {
                     v.setBackground(unavailableShape);
-                    //Log.i("VIEW", "Tem parentes");
                 } else {
                     v.setBackground(enterShape);
-                    //Log.i("VIEW", "Não tem parentes ");
                 }
                 break;
 
@@ -159,9 +157,6 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
                 View view2 = (View) event.getLocalState();
                 view2.setVisibility(View.VISIBLE);
 
-                Log.i("VIEW", "View1 Tag: " + view1.getTag());
-                Log.i("VIEW", "View2 Tag: " + view2.getTag());
-
                 if (view2.getTag().equals(view1.getTag())) {
                     v.setBackground(enterShape);
                 } else {
@@ -180,7 +175,6 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
         View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
         v.startDrag(dragData, shadowBuilder, v, 0);
         v.setVisibility(View.INVISIBLE);
-
         return true;
     }
 }

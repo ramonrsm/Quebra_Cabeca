@@ -5,7 +5,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Tabuleiro {
 
@@ -15,7 +17,7 @@ public class Tabuleiro {
     // Verifica se o tabauleiro está completo
     public static boolean VerificarTabuleiro(TableLayout tableLayout){
 
-        ArrayList<Integer> TagPecas = new ArrayList<>();
+        List<Integer> TagPecas = new ArrayList<>();
 
         for(int i = 0; i < tableLayout.getChildCount(); i++){
 
@@ -40,11 +42,17 @@ public class Tabuleiro {
         return ValidarTabuleiro(TagPecas);
     }
 
-    private static boolean ValidarTabuleiro(ArrayList<Integer> pecas){
+    private static boolean ValidarTabuleiro(List<Integer> pecas){
 
         for (int i = 0; i < TAM_TABULEIRO; i++){
 
             if(pecas.isEmpty() || pecas.size() < TAM_TABULEIRO ){
+
+                /*for (int integer : pecas) {
+                    if(integer != TagsTabuleiro[i]){
+                        return false;
+                    }
+                }*/
 
                 if(pecas.get(i) == null || Integer.parseInt(pecas.get(i).toString()) != TagsTabuleiro[i]){
                     return false;
