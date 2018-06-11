@@ -1,22 +1,29 @@
 package quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.View;
 
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 
 import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.Controller.Tabuleiro;
 import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.R;
 
 public class TabuleiroActivity extends AppCompatActivity implements View.OnLongClickListener, View.OnDragListener {
 
+    private TableLayout tableLayout;
+
     //private Button      button_novoJogo;
     //private Button      button_Sair;
+    private Button        button_Verificar;
 
     private Drawable    enterShape;
     private Drawable    unavailableShape;
@@ -27,8 +34,14 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabuleiro);
 
+        tableLayout = findViewById(R.id.tableLayout);
+
+        //Tabuleiro.IniciarTabuleiro();
+
         //button_novoJogo = findViewById(R.id.button_novoJogo);
         //button_Sair     = findViewById(R.id.button_Sair);
+
+        button_Verificar = findViewById(R.id.button_Verificar);
 
         enterShape       = getResources().getDrawable(R.drawable.bg_quebra_cabeca_over);
         normalShape      = getResources().getDrawable(R.drawable.bg_quebra_cabeca);
@@ -73,6 +86,34 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
                 return true;
             }
         });
+
+        button_Verificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(Tabuleiro.VerificarTabuleiro(tableLayout)){
+                    AlertDialog.Builder alerta = new AlertDialog.Builder(TabuleiroActivity.this);
+                    alerta.setTitle("Sucesso");
+                    alerta.setMessage("Parabéns você montou o quebra-cabeça!");
+                    alerta.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    alerta.create();
+                    alerta.show();
+                }else{
+                    AlertDialog.Builder alerta = new AlertDialog.Builder(TabuleiroActivity.this);
+                    alerta.setTitle("Incompleto");
+                    alerta.setMessage("Verifique a ordem das peças!");
+                    alerta.setNeutralButton("Fechar", null);
+                    alerta.create();
+                    alerta.show();
+                }
+
+            }
+        });
     }
 
     @Override
@@ -85,10 +126,10 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
 
                 if (containerPeca.getChildCount() != 0) {
                     v.setBackground(unavailableShape);
-                    Log.i("VIEW", "Tem parentes");
+                    //Log.i("VIEW", "Tem parentes");
                 } else {
                     v.setBackground(enterShape);
-                    Log.i("VIEW", "Não tem parentes ");
+                    //Log.i("VIEW", "Não tem parentes ");
                 }
                 break;
 

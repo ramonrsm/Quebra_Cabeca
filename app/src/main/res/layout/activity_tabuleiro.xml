@@ -53,7 +53,7 @@
                 android:contentDescription="@string/contentDescription_default"
                 android:padding="8dp"
                 android:src="@drawable/c1l1"
-                android:tag="peca0" />
+                android:tag="0" />
 
             <ImageView
                 android:id="@+id/peca1"
@@ -131,9 +131,9 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="410dp"
+                android:layout_width="310dp"
                 android:layout_height="100dp"
-                android:layout_weight="1"
+                android:contentDescription="@string/contentDescription_default"
                 app:srcCompat="@drawable/bg_barra_rolagem" />
 
         </LinearLayout>
@@ -157,7 +157,7 @@
                 android:layout_height="100dp"
                 android:background="@drawable/bg_quebra_cabeca"
                 android:orientation="vertical"
-                android:tag="recipiente0">
+                android:tag="0">
 
             </LinearLayout>
 
@@ -197,7 +197,7 @@
                 android:layout_height="100dp"
                 android:background="@drawable/bg_quebra_cabeca"
                 android:orientation="vertical"
-                android:tag="3" />
+                android:tag="4" />
 
             <LinearLayout
                 android:id="@+id/recipiente5"
@@ -240,21 +240,30 @@
 
     </TableLayout>
 
-    <LinearLayout
-        android:id="@+id/view_resultado"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="8dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageView_Resultado"
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_gravity="center"
+            android:layout_marginStart="58dp"
             android:contentDescription="@string/contentDescription_default"
-            android:scaleType="centerCrop"
             android:src="@drawable/android_lollipop_bugdroid" />
-    </LinearLayout>
+
+        <Button
+            android:id="@+id/button_Verificar"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="60dp"
+            android:text="@string/button_verificar" />
+
+    </RelativeLayout>
 
 </LinearLayout>

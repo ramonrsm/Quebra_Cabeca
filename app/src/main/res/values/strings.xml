@@ -3,4 +3,5 @@
     <string name="contentDescription_default">TODO</string>
     <string name="button_novo_jogo">Novo Jogo</string>
     <string name="button_sair">Sair</string>
+    <string name="button_verificar">Verificar</string>
 </resources>
