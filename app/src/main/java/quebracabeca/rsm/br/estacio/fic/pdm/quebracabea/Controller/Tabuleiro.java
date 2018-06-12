@@ -6,18 +6,11 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Tabuleiro {
 
-    private static final int TAM_TABULEIRO = 9;
-    private static int[] TagsTabuleiro = {0,1,2,3,4,5,6,7,8};
 
     // Verifica se o tabauleiro está completo
     public static boolean VerificarTabuleiro(TableLayout tableLayout){
-
-        List<Integer> TagPecas = new ArrayList<>();
 
         for(int i = 0; i < tableLayout.getChildCount(); i++){
 
@@ -27,35 +20,15 @@ public class Tabuleiro {
 
                 LinearLayout containerPeca = (LinearLayout) tableRow.getChildAt(j);
 
-                if(containerPeca.getChildCount() != 0){
+                if(containerPeca.getChildCount() != 0) {
 
                     View peca = containerPeca.getChildAt(0);
-                    Integer tag = Integer.getInteger(peca.getTag().toString());
+                    String tagPeca = peca.getTag().toString();
+                    String tagContainerPeca = containerPeca.getTag().toString();
 
-                    if(peca.getTag().equals(containerPeca.getTag())){
-                        TagPecas.add(tag);
-                    }
-                }
-            }
-        }
-
-        return ValidarTabuleiro(TagPecas);
-    }
-
-    private static boolean ValidarTabuleiro(List<Integer> pecas){
-
-        for (int i = 0; i < TAM_TABULEIRO; i++){
-
-            if(pecas.isEmpty() || pecas.size() < TAM_TABULEIRO ){
-
-                /*for (int integer : pecas) {
-                    if(integer != TagsTabuleiro[i]){
+                    if (!tagPeca.equals(tagContainerPeca)) {
                         return false;
                     }
-                }*/
-
-                if(pecas.get(i) == null || Integer.parseInt(pecas.get(i).toString()) != TagsTabuleiro[i]){
-                    return false;
                 }
             }
         }
