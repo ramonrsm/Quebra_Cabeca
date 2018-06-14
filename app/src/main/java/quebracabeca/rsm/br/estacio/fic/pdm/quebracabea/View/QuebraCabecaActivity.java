@@ -14,9 +14,10 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 
 import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.Controller.Tabuleiro;
+import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.Controller.Util;
 import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.R;
 
-public class TabuleiroActivity extends AppCompatActivity implements View.OnLongClickListener, View.OnDragListener, View.OnClickListener {
+public class QuebraCabecaActivity extends AppCompatActivity implements View.OnLongClickListener, View.OnDragListener, View.OnClickListener {
 
     private TableLayout tableLayout;
     private View        barra_rolagem_pecas;
@@ -28,7 +29,9 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tabuleiro);
+        setContentView(R.layout.activity_quebra_cabeca);
+
+        setTitle("Quebra Cabeça");
 
         enterShape       = getResources().getDrawable(R.drawable.bg_quebra_cabeca_over);
         normalShape      = getResources().getDrawable(R.drawable.bg_quebra_cabeca);
@@ -149,19 +152,15 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
 
         switch (v.getId()){
             case R.id.button_novoJogo:
-                AlertDialog.Builder alertaNovoJogo = new AlertDialog.Builder(TabuleiroActivity.this);
-                alertaNovoJogo.setTitle("Novo Jogo");
-                alertaNovoJogo.setMessage("Monte todas as peças na ordem certa!");
-                alertaNovoJogo.setNeutralButton("Fechar", null);
-                alertaNovoJogo.create();
-                alertaNovoJogo.show();
+                Util.AlertDialogNeutral(this, "Novo Jogo", "Monte todas as peças na ordem certa!");
                 Tabuleiro.Inicializar(tableLayout, barra_rolagem_pecas);
                 break;
-            case R.id.button_Sair: finish();break;
+            case R.id.button_Sair: finish();
+                break;
             case R.id.button_Verificar:
 
                 if(Tabuleiro.VerificarTabuleiro(tableLayout)){
-                    AlertDialog.Builder alertaSucesso = new AlertDialog.Builder(TabuleiroActivity.this);
+                    AlertDialog.Builder alertaSucesso = new AlertDialog.Builder(QuebraCabecaActivity.this);
                     alertaSucesso.setTitle("Sucesso");
                     alertaSucesso.setMessage("Parabéns você montou o quebra-cabeça!");
                     alertaSucesso.setPositiveButton("Novo Jogo", new DialogInterface.OnClickListener() {
@@ -173,12 +172,7 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
                     alertaSucesso.create();
                     alertaSucesso.show();
                 }else{
-                    AlertDialog.Builder alertaIncompleto = new AlertDialog.Builder(TabuleiroActivity.this);
-                    alertaIncompleto.setTitle("Incompleto");
-                    alertaIncompleto.setMessage("Verifique a ordem das peças!");
-                    alertaIncompleto.setNeutralButton("Fechar", null);
-                    alertaIncompleto.create();
-                    alertaIncompleto.show();
+                    Util.AlertDialogNeutral(this, "Incompleto", "Verifique a ordem das peças!");
                 }
                 break;
         }

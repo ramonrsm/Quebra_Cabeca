@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">Quebra Cabeça</string>
+    <string name="app_name">Projeto AV2 RSM</string>
     <string name="contentDescription_default">TODO</string>
     <string name="button_novo_jogo">Novo Jogo</string>
     <string name="button_sair">Sair</string>
     <string name="button_verificar">Verificar</string>
+    <string name="textButton_quebra_cabeca">Quebra Cabeça</string>
+    <string name="titulo_escolha_um_jogo">ESCOLHA UM JOGO</string>
+    <string name="textButton_slider">Slider</string>
 </resources>

@@ -7,7 +7,7 @@
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     android:tag="LinearLayout"
-    tools:context=".View.TabuleiroActivity">
+    tools:context=".View.QuebraCabecaActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
