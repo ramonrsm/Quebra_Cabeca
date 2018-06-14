@@ -21,10 +21,6 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
 
     private TableLayout tableLayout;
 
-    //private Button      button_novoJogo;
-    //private Button      button_Sair;
-    private Button        button_Verificar;
-
     private Drawable    enterShape;
     private Drawable    unavailableShape;
     private Drawable    normalShape;
@@ -34,18 +30,13 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabuleiro);
 
-        tableLayout = findViewById(R.id.tableLayout);
-
-        //Tabuleiro.IniciarTabuleiro();
-
-        //button_novoJogo = findViewById(R.id.button_novoJogo);
-        //button_Sair     = findViewById(R.id.button_Sair);
-
-        button_Verificar = findViewById(R.id.button_Verificar);
+        Button button_Verificar = findViewById(R.id.button_Verificar);
 
         enterShape       = getResources().getDrawable(R.drawable.bg_quebra_cabeca_over);
         normalShape      = getResources().getDrawable(R.drawable.bg_quebra_cabeca);
         unavailableShape = getResources().getDrawable(R.drawable.bg_quebra_cabeca_unavailable);
+
+        tableLayout = findViewById(R.id.tableLayout);
 
         findViewById(R.id.peca0).setOnLongClickListener(this);
         findViewById(R.id.peca1).setOnLongClickListener(this);
@@ -82,7 +73,6 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
                     container.addView(view);
                     view.setVisibility(View.VISIBLE);
                 }
-
                 return true;
             }
         });
@@ -95,7 +85,7 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
                     AlertDialog.Builder alerta = new AlertDialog.Builder(TabuleiroActivity.this);
                     alerta.setTitle("Sucesso");
                     alerta.setMessage("Parabéns você montou o quebra-cabeça!");
-                    alerta.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                    alerta.setPositiveButton("Novo Jogo", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -157,6 +147,9 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
                 View view2 = (View) event.getLocalState();
                 view2.setVisibility(View.VISIBLE);
 
+                Log.i("VIEW", "View1 Tag: " + view1.getTag());
+                Log.i("VIEW", "View2 Tag: " + view2.getTag());
+
                 if (view2.getTag().equals(view1.getTag())) {
                     v.setBackground(enterShape);
                 } else {
@@ -175,6 +168,7 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
         View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
         v.startDrag(dragData, shadowBuilder, v, 0);
         v.setVisibility(View.INVISIBLE);
+
         return true;
     }
 }

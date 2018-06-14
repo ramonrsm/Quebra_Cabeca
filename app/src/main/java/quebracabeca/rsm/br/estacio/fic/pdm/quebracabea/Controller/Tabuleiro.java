@@ -9,6 +9,7 @@ import android.widget.TableRow;
 public class Tabuleiro {
 
 
+
     // Verifica se o tabauleiro está completo
     public static boolean VerificarTabuleiro(TableLayout tableLayout){
 
@@ -29,15 +30,11 @@ public class Tabuleiro {
                     if (!tagPeca.equals(tagContainerPeca)) {
                         return false;
                     }
+                }else{
+                    return false;
                 }
             }
         }
         return true;
-    }
-
-    // Iniciar e Reiniciar tabuleiro
-    public static void IniciarTabuleiro(){
-
-
     }
 }
