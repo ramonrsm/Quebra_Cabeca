@@ -10,16 +10,16 @@ import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 
 import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.Controller.Tabuleiro;
 import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.R;
 
-public class TabuleiroActivity extends AppCompatActivity implements View.OnLongClickListener, View.OnDragListener {
+public class TabuleiroActivity extends AppCompatActivity implements View.OnLongClickListener, View.OnDragListener, View.OnClickListener {
 
     private TableLayout tableLayout;
+    private View        barra_rolagem_pecas;
 
     private Drawable    enterShape;
     private Drawable    unavailableShape;
@@ -29,8 +29,6 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabuleiro);
-
-        Button button_Verificar = findViewById(R.id.button_Verificar);
 
         enterShape       = getResources().getDrawable(R.drawable.bg_quebra_cabeca_over);
         normalShape      = getResources().getDrawable(R.drawable.bg_quebra_cabeca);
@@ -58,7 +56,9 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
         findViewById(R.id.recipiente7).setOnDragListener(this);
         findViewById(R.id.recipiente8).setOnDragListener(this);
 
-        View barra_rolagem_pecas = findViewById(R.id.barra_rolagem_pecas);
+
+
+        barra_rolagem_pecas = findViewById(R.id.barra_rolagem_pecas);
         barra_rolagem_pecas.setOnDragListener(new View.OnDragListener() {
             @Override
             public boolean onDrag(View v, DragEvent event) {
@@ -74,34 +74,6 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
                     view.setVisibility(View.VISIBLE);
                 }
                 return true;
-            }
-        });
-
-        button_Verificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(Tabuleiro.VerificarTabuleiro(tableLayout)){
-                    AlertDialog.Builder alerta = new AlertDialog.Builder(TabuleiroActivity.this);
-                    alerta.setTitle("Sucesso");
-                    alerta.setMessage("Parabéns você montou o quebra-cabeça!");
-                    alerta.setPositiveButton("Novo Jogo", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-                    alerta.create();
-                    alerta.show();
-                }else{
-                    AlertDialog.Builder alerta = new AlertDialog.Builder(TabuleiroActivity.this);
-                    alerta.setTitle("Incompleto");
-                    alerta.setMessage("Verifique a ordem das peças!");
-                    alerta.setNeutralButton("Fechar", null);
-                    alerta.create();
-                    alerta.show();
-                }
-
             }
         });
     }
@@ -170,5 +142,45 @@ public class TabuleiroActivity extends AppCompatActivity implements View.OnLongC
         v.setVisibility(View.INVISIBLE);
 
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+            case R.id.button_novoJogo:
+                AlertDialog.Builder alertaNovoJogo = new AlertDialog.Builder(TabuleiroActivity.this);
+                alertaNovoJogo.setTitle("Novo Jogo");
+                alertaNovoJogo.setMessage("Monte todas as peças na ordem certa!");
+                alertaNovoJogo.setNeutralButton("Fechar", null);
+                alertaNovoJogo.create();
+                alertaNovoJogo.show();
+                Tabuleiro.Inicializar(tableLayout, barra_rolagem_pecas);
+                break;
+            case R.id.button_Sair: finish();break;
+            case R.id.button_Verificar:
+
+                if(Tabuleiro.VerificarTabuleiro(tableLayout)){
+                    AlertDialog.Builder alertaSucesso = new AlertDialog.Builder(TabuleiroActivity.this);
+                    alertaSucesso.setTitle("Sucesso");
+                    alertaSucesso.setMessage("Parabéns você montou o quebra-cabeça!");
+                    alertaSucesso.setPositiveButton("Novo Jogo", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Tabuleiro.Inicializar(tableLayout, barra_rolagem_pecas);
+                        }
+                    });
+                    alertaSucesso.create();
+                    alertaSucesso.show();
+                }else{
+                    AlertDialog.Builder alertaIncompleto = new AlertDialog.Builder(TabuleiroActivity.this);
+                    alertaIncompleto.setTitle("Incompleto");
+                    alertaIncompleto.setMessage("Verifique a ordem das peças!");
+                    alertaIncompleto.setNeutralButton("Fechar", null);
+                    alertaIncompleto.create();
+                    alertaIncompleto.show();
+                }
+                break;
+        }
     }
 }

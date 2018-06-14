@@ -19,6 +19,7 @@
             android:id="@+id/button_novoJogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onClick"
             android:text="@string/button_novo_jogo" />
 
         <Button
@@ -27,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerHorizontal="true"
+            android:onClick="onClick"
             android:text="@string/button_sair"
             tools:ignore="RelativeOverlap" />
 
@@ -262,6 +264,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_marginEnd="60dp"
+            android:onClick="onClick"
             android:text="@string/button_verificar" />
 
     </RelativeLayout>

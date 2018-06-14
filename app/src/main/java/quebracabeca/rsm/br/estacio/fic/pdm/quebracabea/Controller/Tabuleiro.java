@@ -8,8 +8,6 @@ import android.widget.TableRow;
 
 public class Tabuleiro {
 
-
-
     // Verifica se o tabauleiro está completo
     public static boolean VerificarTabuleiro(TableLayout tableLayout){
 
@@ -36,5 +34,28 @@ public class Tabuleiro {
             }
         }
         return true;
+    }
+
+    public static void Inicializar(TableLayout tableLayout, View containerPecas){
+
+        for(int i = 0; i < tableLayout.getChildCount(); i++){
+
+            TableRow tableRow = (TableRow) tableLayout.getChildAt(i);
+
+            for(int j = 0; j < tableRow.getChildCount(); j++){
+
+                LinearLayout containerPeca = (LinearLayout) tableRow.getChildAt(j);
+
+                if(containerPeca.getChildCount() != 0) {
+
+                    LinearLayout container = (LinearLayout) containerPecas;
+                    View view = containerPeca.getChildAt(0);
+
+                    containerPeca.removeViewAt(0);
+
+                    container.addView(view);
+                }
+            }
+        }
     }
 }
