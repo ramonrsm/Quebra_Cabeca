@@ -7,19 +7,6 @@
     tools:context=".View.MainActivity"
     tools:layout_editor_absoluteY="81dp">
 
-    <Button
-        android:id="@+id/button_quebra_cabeca"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="55dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="161dp"
-        android:text="@string/textButton_quebra_cabeca"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="IrQuebraCabeca"/>
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -34,15 +21,41 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/button_quebra_cabeca"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="54dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="161dp"
+        android:onClick="IrQuebraCabeca"
+        android:text="@string/textButton_quebra_cabeca"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/button_slider"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="55dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="16dp"
+        android:onClick="IrSlider"
         android:text="@string/textButton_slider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_quebra_cabeca"
-        android:onClick="IrSlider"/>
+        app:layout_constraintTop_toBottomOf="@+id/button_quebra_cabeca" />
+
+    <Button
+        android:id="@+id/button_sobre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="54dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="15dp"
+        android:onClick="IrSobre"
+        android:text="@string/textButton_sobre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_slider" />
 </android.support.constraint.ConstraintLayout>

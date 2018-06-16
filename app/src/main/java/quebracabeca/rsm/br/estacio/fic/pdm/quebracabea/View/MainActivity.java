@@ -24,4 +24,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intentSlider = new Intent(this, SliderActivity.class);
         startActivity(intentSlider);
     }
+
+    public void IrSobre(View view){
+        Intent intentSlider = new Intent(this, SobreActivity.class);
+        startActivity(intentSlider);
+    }
 }
