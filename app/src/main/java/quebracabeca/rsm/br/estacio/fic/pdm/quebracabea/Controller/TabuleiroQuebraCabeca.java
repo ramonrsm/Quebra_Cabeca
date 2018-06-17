@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
-public class Tabuleiro {
+public class TabuleiroQuebraCabeca {
 
     // Verifica se o tabauleiro está completo
     public static boolean VerificarTabuleiro(TableLayout tableLayout){

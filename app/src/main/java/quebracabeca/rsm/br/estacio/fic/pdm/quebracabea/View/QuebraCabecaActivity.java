@@ -13,7 +13,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 
-import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.Controller.Tabuleiro;
+import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.Controller.TabuleiroQuebraCabeca;
+import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.Controller.TabuleiroSlider;
 import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.Controller.Util;
 import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.R;
 
@@ -153,20 +154,20 @@ public class QuebraCabecaActivity extends AppCompatActivity implements View.OnLo
         switch (v.getId()){
             case R.id.button_novoJogo:
                 Util.AlertDialogNeutral(this, "Novo Jogo", "Monte todas as peças na ordem certa!");
-                Tabuleiro.Inicializar(tableLayout, barra_rolagem_pecas);
+                TabuleiroQuebraCabeca.Inicializar(tableLayout, barra_rolagem_pecas);
                 break;
             case R.id.button_Sair: finish();
                 break;
             case R.id.button_Verificar:
 
-                if(Tabuleiro.VerificarTabuleiro(tableLayout)){
+                if(TabuleiroQuebraCabeca.VerificarTabuleiro(tableLayout)){
                     AlertDialog.Builder alertaSucesso = new AlertDialog.Builder(QuebraCabecaActivity.this);
                     alertaSucesso.setTitle("Sucesso");
                     alertaSucesso.setMessage("Parabéns você montou o quebra-cabeça!");
                     alertaSucesso.setPositiveButton("Novo Jogo", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Tabuleiro.Inicializar(tableLayout, barra_rolagem_pecas);
+                            TabuleiroQuebraCabeca.Inicializar(tableLayout, barra_rolagem_pecas);
                         }
                     });
                     alertaSucesso.create();
