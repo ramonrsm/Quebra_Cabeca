@@ -58,24 +58,16 @@ public class TabuleiroSlider {
 
     public static boolean PecasDisponiveis(int tag){
 
-        boolean parar = false;
+        Log.i("PECAS", "CONTAINER VAZIO: "+containerVazio);
 
-        for (int[] valores : camposValidos) {
+        ArrayList valores = new ArrayList();
 
-            if(parar){
-                break;
-            }
-
-            for (int valore : valores) {
-
-                if (valore != tag) {
-                    parar = true;
-                    return parar;
-                }
-            }
+        for (int valor : camposValidos[containerVazio]) {
+            Log.i("PECAS", "CONTAINERS DISPONIVEIS: "+valor);
+            valores.add(valor);
         }
 
-        return parar;
+        return valores.contains(tag);
     }
 
     public static void setContainerVazio(int valor){

@@ -63,12 +63,19 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
     @Override
     public boolean onDrag(View v, DragEvent event) {
 
+        LinearLayout container = (LinearLayout) v;
+        int tagContainer = Integer.parseInt(container.getTag().toString());
+
+        View view = (View) event.getLocalState();
+        //int tagImagem    = Integer.parseInt(view.getTag().toString());
+
         switch (event.getAction()){
 
             case DragEvent.ACTION_DRAG_ENTERED:
 
-                if (Integer.parseInt(v.getTag().toString()) != TabuleiroSlider.ConsultarContainerVazio() /*|| containerPeca.getTag().equals(v.getTag())*/) {
+                if (tagContainer != TabuleiroSlider.ConsultarContainerVazio()) {
                     v.setBackground(unavailableShape);
+                    return false;
                 }
                 else {
                     v.setBackground(enterShape);
@@ -81,31 +88,26 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
 
             case DragEvent.ACTION_DROP:
 
-                LinearLayout container = (LinearLayout) v;
-
                 if (container.getChildCount() == 0) {
-
-                    View view = (View) event.getLocalState();
 
                     ViewGroup owner = (ViewGroup) view.getParent();
                     owner.removeView(view);
 
                     container.addView(view);
                     view.setVisibility(View.VISIBLE);
+
+                    if(tagInicial != tagContainer){
+                        TabuleiroSlider.setContainerVazio(tagInicial);
+                    }
+                }else{
+                    return false;
                 }
                 break;
 
             case DragEvent.ACTION_DRAG_ENDED:
 
-                View view2 = (View) event.getLocalState();
-                view2.setVisibility(View.VISIBLE);
+                view.setVisibility(View.VISIBLE);
                 v.setBackground(normalShape);
-
-                int tagContainer = Integer.parseInt(view2.getTag().toString());
-
-                if(tagInicial != tagContainer){
-                    TabuleiroSlider.setContainerVazio(tagContainer);
-                }
                 break;
         }
 
@@ -120,15 +122,15 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
 
         int tag = Integer.parseInt(container.getTag().toString());
 
-        if(!TabuleiroSlider.PecasDisponiveis(tag)){
-            return false;
-        }else{
+        if(TabuleiroSlider.PecasDisponiveis(tag)){
             ClipData dragData = ClipData.newPlainText("","");
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
             v.startDrag(dragData, shadowBuilder, v, 0);
             v.setVisibility(View.INVISIBLE);
             tagInicial = tag;
             return true;
+        }else{
+            return false;
         }
     }
 
