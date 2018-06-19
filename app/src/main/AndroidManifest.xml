@@ -25,7 +25,7 @@
             android:name=".View.SliderActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".View.SobreActivity"
-                  android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

@@ -5,7 +5,6 @@ import android.content.ClipData;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,6 +21,8 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
     private Drawable    enterShape;
     private Drawable    normalShape;
     private Drawable    unavailableShape;
+
+    private static int  tagInicial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,15 +64,14 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
     public boolean onDrag(View v, DragEvent event) {
 
         switch (event.getAction()){
+
             case DragEvent.ACTION_DRAG_ENTERED:
 
-                LinearLayout containerPeca = (LinearLayout) v;
-                int tagContainer = Integer.parseInt(containerPeca.getTag().toString());
-
-                if (tagContainer == TabuleiroSlider.ContainerDisponivel()) {
-                    v.setBackground(enterShape);
-                } else {
+                if (Integer.parseInt(v.getTag().toString()) != TabuleiroSlider.ConsultarContainerVazio() /*|| containerPeca.getTag().equals(v.getTag())*/) {
                     v.setBackground(unavailableShape);
+                }
+                else {
+                    v.setBackground(enterShape);
                 }
                 break;
 
@@ -82,14 +82,10 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
             case DragEvent.ACTION_DROP:
 
                 LinearLayout container = (LinearLayout) v;
-                tagContainer = Integer.parseInt(container.getTag().toString());
-
-                Log.i("DROP", "TAG CONTAINER: "+ tagContainer);
 
                 if (container.getChildCount() == 0) {
 
                     View view = (View) event.getLocalState();
-                    Log.i("DROP", "TAG VIEW: "+ view.getTag().toString());
 
                     ViewGroup owner = (ViewGroup) view.getParent();
                     owner.removeView(view);
@@ -105,9 +101,11 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
                 view2.setVisibility(View.VISIBLE);
                 v.setBackground(normalShape);
 
-                tagContainer = Integer.parseInt(view2.getTag().toString());
-                TabuleiroSlider.setContainerVazio(tagContainer);
-                Log.i("DROP", "Container Vazio: "+ tagContainer);
+                int tagContainer = Integer.parseInt(view2.getTag().toString());
+
+                if(tagInicial != tagContainer){
+                    TabuleiroSlider.setContainerVazio(tagContainer);
+                }
                 break;
         }
 
@@ -118,17 +116,19 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
-        int tag = Integer.parseInt(v.getTag().toString());
+        LinearLayout container = (LinearLayout) v.getParent();
 
-        if(tag == TabuleiroSlider.ContainerDisponivel()+1 || tag == TabuleiroSlider.ContainerDisponivel()-1){
+        int tag = Integer.parseInt(container.getTag().toString());
 
+        if(!TabuleiroSlider.PecasDisponiveis(tag)){
+            return false;
+        }else{
             ClipData dragData = ClipData.newPlainText("","");
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
             v.startDrag(dragData, shadowBuilder, v, 0);
             v.setVisibility(View.INVISIBLE);
+            tagInicial = tag;
             return true;
-        }else{
-            return false;
         }
     }
 

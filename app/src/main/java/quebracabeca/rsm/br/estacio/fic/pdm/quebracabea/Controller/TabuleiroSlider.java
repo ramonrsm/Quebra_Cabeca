@@ -6,20 +6,31 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class TabuleiroSlider {
 
     private static final int TAM_TABULEIRO = 9;
-    private static int       containerVazio;
+    private static int      containerVazio;
+
+    private static int[][] camposValidos =
+            {{1,3},
+            {0,4,2},
+            {1,5},
+            {0,4,6},
+            {1,3,7,5},
+            {2,4,8},
+            {3,7},
+            {6,4,8},
+            {7,5}};
 
     public static void InicializarSlider(TableLayout tableLayout){
 
         Random random = new Random();
 
         containerVazio = random.nextInt(TAM_TABULEIRO);
-
-        //Log.i("INICIALIZAR", "Valor Random: "+containerVazio);
 
         for(int i = 0; i < tableLayout.getChildCount(); i++){
 
@@ -33,8 +44,6 @@ public class TabuleiroSlider {
 
                     View view = linearLayout.getChildAt(0);
 
-                    //Log.i("INICIALIZAR", "Tag: "+view.getTag());
-
                     if(Integer.parseInt(view.getTag().toString()) == containerVazio){
                         linearLayout.removeViewAt(0);
                     }
@@ -43,8 +52,30 @@ public class TabuleiroSlider {
         }
     }
 
-    public static int ContainerDisponivel(){
+    public static int ConsultarContainerVazio(){
         return containerVazio;
+    }
+
+    public static boolean PecasDisponiveis(int tag){
+
+        boolean parar = false;
+
+        for (int[] valores : camposValidos) {
+
+            if(parar){
+                break;
+            }
+
+            for (int valore : valores) {
+
+                if (valore != tag) {
+                    parar = true;
+                    return parar;
+                }
+            }
+        }
+
+        return parar;
     }
 
     public static void setContainerVazio(int valor){

@@ -7,7 +7,7 @@
     <string name="textButton_quebra_cabeca">Quebra Cabeça</string>
     <string name="titulo_escolha_um_jogo">ESCOLHA UM JOGO</string>
     <string name="textButton_slider">Slider</string>
-    <string name="sobre">Projeto desenvolvido por RamonRsM para a disciplida de Programação para Dispositivos Móveis do curso de Jogos Digitais - Estácio</string>
+    <string name="sobre">Projeto desenvolvido por Ramon Moura - 201602250316 para a disciplida de Programação para Dispositivos Móveis do curso de Jogos Digitais - Estácio</string>
     <string name="textButton_menu">Menu</string>
     <string name="textButton_sobre">Sobre</string>
 </resources>
