@@ -11,7 +11,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:orientation="horizontal"
         android:tag="RelativeLayout">
 
@@ -23,6 +23,15 @@
             android:text="@string/button_novo_jogo" />
 
         <Button
+            android:id="@+id/button_Verificar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="onClick"
+            android:text="@string/button_verificar" />
+
+        <Button
             android:id="@+id/button_Sair"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,6 +41,14 @@
             android:text="@string/button_sair"
             tools:ignore="RelativeOverlap" />
 
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/textView_Ajuda_QuebraCabeca"
+            android:textColor="@android:color/white"/>
     </RelativeLayout>
 
     <HorizontalScrollView
@@ -146,7 +163,8 @@
         android:id="@+id/tableLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:padding="4dp">
 
         <TableRow
             android:layout_width="wrap_content"
@@ -248,24 +266,13 @@
 
         <ImageView
             android:id="@+id/imageView_Resultado"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:layout_marginStart="60dp"
             android:contentDescription="@string/contentDescription_default"
             android:src="@drawable/android_lollipop_bugdroid" />
-
-        <Button
-            android:id="@+id/button_Verificar"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="60dp"
-            android:onClick="onClick"
-            android:text="@string/button_verificar" />
 
     </RelativeLayout>
 

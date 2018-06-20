@@ -5,16 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     android:padding="8dp"
     tools:context=".View.SliderActivity">
 
     <Button
         android:id="@+id/button_Verificar"
-        android:layout_width="100dp"
-        android:layout_height="59dp"
-        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button_novoJogo"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="56dp"
         android:onClick="onClick"
         android:text="@string/button_verificar" />
 
@@ -219,5 +219,15 @@
         </TableRow>
 
     </TableLayout>
+
+    <TextView
+        android:id="@+id/textViewAjuda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="67dp"
+        android:text="@string/textView_Ajuda"
+        android:textColor="@android:color/white" />
 
 </RelativeLayout>

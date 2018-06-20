@@ -11,6 +11,7 @@ import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 
@@ -72,7 +73,6 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
         int tagContainer = Integer.parseInt(container.getTag().toString());
 
         View view = (View) event.getLocalState();
-        //int tagImagem    = Integer.parseInt(view.getTag().toString());
 
         switch (event.getAction()){
 
@@ -110,7 +110,6 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
                 break;
 
             case DragEvent.ACTION_DRAG_ENDED:
-
                 view.setVisibility(View.VISIBLE);
                 v.setBackground(normalShape);
                 break;
@@ -144,6 +143,8 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
         switch (v.getId()){
             case R.id.button_novoJogo:
                 Util.AlertDialogNeutral(this, "Novo Jogo", "Monte todas as peças na ordem certa!");
+                TabuleiroSlider.NovoJogo(tableLayout);
+                TabuleiroSlider.InicializarSlider(tableLayout);
                 break;
             case R.id.button_Verificar:
                 if(TabuleiroSlider.VerificarTabuleiroSlider(tableLayout)){
@@ -153,6 +154,8 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
                     alertaSucesso.setPositiveButton("Novo Jogo", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+
+                            TabuleiroSlider.NovoJogo(tableLayout);
                             TabuleiroSlider.InicializarSlider(tableLayout);
                         }
                     });
