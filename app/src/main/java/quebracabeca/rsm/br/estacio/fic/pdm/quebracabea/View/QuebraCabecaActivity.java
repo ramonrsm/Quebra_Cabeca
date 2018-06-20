@@ -152,10 +152,6 @@ public class QuebraCabecaActivity extends AppCompatActivity implements View.OnLo
     public void onClick(View v) {
 
         switch (v.getId()){
-            case R.id.button_novoJogo:
-                Util.AlertDialogNeutral(this, "Novo Jogo", "Monte todas as peças na ordem certa!");
-                TabuleiroQuebraCabeca.Inicializar(tableLayout, barra_rolagem_pecas);
-                break;
             case R.id.button_Sair: finish();
                 break;
             case R.id.button_Verificar:

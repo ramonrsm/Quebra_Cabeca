@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -103,6 +104,7 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
 
                     if(tagInicial != tagContainer){
                         TabuleiroSlider.setContainerVazio(tagInicial);
+                        Log.i("PECAS", "NOVO CONTAINER VAZIO: "+TabuleiroSlider.ConsultarContainerVazio());
                     }
                 }else{
                     return false;
@@ -141,22 +143,15 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.button_novoJogo:
-                Util.AlertDialogNeutral(this, "Novo Jogo", "Monte todas as peças na ordem certa!");
-                TabuleiroSlider.NovoJogo(tableLayout);
-                TabuleiroSlider.InicializarSlider(tableLayout);
-                break;
             case R.id.button_Verificar:
                 if(TabuleiroSlider.VerificarTabuleiroSlider(tableLayout)){
                     AlertDialog.Builder alertaSucesso = new AlertDialog.Builder(SliderActivity.this);
                     alertaSucesso.setTitle("Sucesso");
                     alertaSucesso.setMessage("Parabéns você montou o quebra-cabeça!");
-                    alertaSucesso.setPositiveButton("Novo Jogo", new DialogInterface.OnClickListener() {
+                    alertaSucesso.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
-                            TabuleiroSlider.NovoJogo(tableLayout);
-                            TabuleiroSlider.InicializarSlider(tableLayout);
+                            finish();
                         }
                     });
                     alertaSucesso.create();
