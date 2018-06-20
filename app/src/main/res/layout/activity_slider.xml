@@ -9,6 +9,16 @@
     tools:context=".View.SliderActivity">
 
     <Button
+        android:id="@+id/button_Verificar"
+        android:layout_width="100dp"
+        android:layout_height="59dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="56dp"
+        android:onClick="onClick"
+        android:text="@string/button_verificar" />
+
+    <Button
         android:id="@+id/button_novoJogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

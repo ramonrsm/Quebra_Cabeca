@@ -2,7 +2,9 @@ package quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.View;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.DragEvent;
@@ -12,11 +14,14 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 
+import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.Controller.TabuleiroQuebraCabeca;
 import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.Controller.TabuleiroSlider;
 import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.Controller.Util;
 import quebracabeca.rsm.br.estacio.fic.pdm.quebracabea.R;
 
 public class SliderActivity extends AppCompatActivity implements View.OnTouchListener, View.OnDragListener, View.OnClickListener {
+
+    private TableLayout tableLayout;
 
     private Drawable    enterShape;
     private Drawable    normalShape;
@@ -35,7 +40,7 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
         normalShape      = getResources().getDrawable(R.drawable.bg_quebra_cabeca);
         unavailableShape = getResources().getDrawable(R.drawable.bg_quebra_cabeca_unavailable);
 
-        TableLayout tableLayout = findViewById(R.id.tableLayout);
+        tableLayout = findViewById(R.id.tableLayout);
 
         findViewById(R.id.peca0).setOnTouchListener(this);
         findViewById(R.id.peca1).setOnTouchListener(this);
@@ -139,6 +144,23 @@ public class SliderActivity extends AppCompatActivity implements View.OnTouchLis
         switch (v.getId()){
             case R.id.button_novoJogo:
                 Util.AlertDialogNeutral(this, "Novo Jogo", "Monte todas as peças na ordem certa!");
+                break;
+            case R.id.button_Verificar:
+                if(TabuleiroSlider.VerificarTabuleiroSlider(tableLayout)){
+                    AlertDialog.Builder alertaSucesso = new AlertDialog.Builder(SliderActivity.this);
+                    alertaSucesso.setTitle("Sucesso");
+                    alertaSucesso.setMessage("Parabéns você montou o quebra-cabeça!");
+                    alertaSucesso.setPositiveButton("Novo Jogo", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            TabuleiroSlider.InicializarSlider(tableLayout);
+                        }
+                    });
+                    alertaSucesso.create();
+                    alertaSucesso.show();
+                }else{
+                    Util.AlertDialogNeutral(this, "Incompleto", "Verifique a ordem das peças!");
+                }
                 break;
             case R.id.button_Sair:
                 finish();
